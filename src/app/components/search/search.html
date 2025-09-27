@@ -15,6 +15,20 @@
     <button class="btn btn-primary" (click)="onSearch()">Search</button>
   </div>
 
+  <!-- Intro Section (shown before searching) -->
+  <div
+    class="text-center my-5"
+    *ngIf="!heroes.length && !loading && !errorMessage"
+  >
+    <h3 class="fw-bold text-primary">Search Your Favourite Superhero</h3>
+    <p class="text-muted mt-3" style="max-width: 600px; margin: 0 auto;">
+      Discover detailed information about superheroes from different universes.
+      Type the name of your favorite hero in the search bar above and explore
+      their biography, publisher, first appearance, and more. Start your search
+      now and dive into the world of heroes!
+    </p>
+  </div>
+
   <!-- Loading -->
   <div *ngIf="loading" class="text-center my-4">
     <div class="spinner-border text-primary" role="status">
@@ -28,7 +42,7 @@
   </div>
 
   <!-- Results -->
-  <div class="row g-4">
+  <div class="row g-4" *ngIf="heroes.length">
     <div class="col-md-3" *ngFor="let hero of heroes">
       <div class="card hero-card h-100 shadow-sm">
         <img
@@ -65,7 +79,11 @@
     <div class="modal-content">
       <div class="modal-header bg-primary text-white">
         <h5 class="modal-title">{{ selectedHero.name }}</h5>
-        <button type="button" class="btn-close" (click)="closeHeroModal()"></button>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeHeroModal()"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -77,10 +95,22 @@
             />
           </div>
           <div class="col-md-8">
-            <p><strong>Full Name:</strong> {{ selectedHero.biography?.['full-name'] }}</p>
-            <p><strong>Publisher:</strong> {{ selectedHero.biography?.publisher }}</p>
-            <p><strong>First Appearance:</strong> {{ selectedHero.biography?.['first-appearance'] }}</p>
-            <p><strong>Alignment:</strong> {{ selectedHero.biography?.alignment }}</p>
+            <p>
+              <strong>Full Name:</strong>
+              {{ selectedHero.biography?.['full-name'] }}
+            </p>
+            <p>
+              <strong>Publisher:</strong>
+              {{ selectedHero.biography?.publisher }}
+            </p>
+            <p>
+              <strong>First Appearance:</strong>
+              {{ selectedHero.biography?.['first-appearance'] }}
+            </p>
+            <p>
+              <strong>Alignment:</strong>
+              {{ selectedHero.biography?.alignment }}
+            </p>
           </div>
         </div>
       </div>
