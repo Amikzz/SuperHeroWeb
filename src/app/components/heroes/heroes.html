@@ -1,10 +1,12 @@
-<div class="container my-5" style="max-width: 1200px; min-height: 80vh;">
-  <h2 class="text-center mb-4" style="font-weight: bold; color: #2c3e50;">Superheroes</h2>
+<div class="container my-5 animate-slide-up" style="max-width: 1200px; min-height: 80vh;">
+  <h2 class="text-center mb-4 animate-fade-in" style="font-weight: bold; color: #2c3e50;">
+    Superheroes
+  </h2>
 
   <div class="row g-4">
-    <div class="col-md-3" *ngFor="let hero of heroes">
-      <div class="card hero-card shadow-sm">
-
+    <div class="col-md-3" *ngFor="let hero of heroes" [@fadeInStagger]>
+      <div class="card hero-card shadow-sm animate-card">
+        
         <!-- Image -->
         <div class="image-container">
           <img 
@@ -16,9 +18,11 @@
 
         <!-- Card body -->
         <div class="card-body d-flex flex-column justify-content-between">
-          <h5 class="card-title">{{hero.name || 'Loading...'}}</h5>
-          <p class="card-text text-truncate">{{hero.biography?.['full-name'] || 'Unknown'}}</p>
-          <button class="btn btn-primary btn-sm" (click)="openHeroModal(hero)">View</button>
+          <h5 class="card-title animate-fade-in">{{hero.name || 'Loading...'}}</h5>
+          <p class="card-text text-truncate animate-fade-in">
+            {{hero.biography?.['full-name'] || 'Unknown'}}
+          </p>
+          <button class="btn btn-primary btn-sm animate-pop" (click)="openHeroModal(hero)">View</button>
         </div>
 
       </div>
@@ -26,7 +30,7 @@
   </div>
 
   <!-- Pagination -->
-  <nav aria-label="Page navigation" class="mt-4">
+  <nav aria-label="Page navigation" class="mt-4 animate-fade-in">
     <ul class="pagination justify-content-center">
       <li class="page-item" [class.disabled]="currentPage === 1">
         <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
@@ -42,22 +46,22 @@
 </div>
 
 <!-- Hero Detail Modal -->
-<div class="modal fade" id="heroModal" tabindex="-1" aria-labelledby="heroModalLabel" aria-hidden="true" *ngIf="selectedHero">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content shadow-lg rounded-4 bg-white">
+<div class="modal fade animate-fade-in" id="heroModal" tabindex="-1" aria-labelledby="heroModalLabel" aria-hidden="true" *ngIf="selectedHero">
+  <div class="modal-dialog modal-lg modal-dialog-centered animate-slide-up">
+    <div class="modal-content shadow-lg rounded-4 bg-white animate-pop">
 
       <!-- Modal Header -->
       <div class="modal-header border-0 pb-0">
-        <h4 class="modal-title fw-bold">{{selectedHero.name}}</h4>
+        <h4 class="modal-title fw-bold animate-fade-in">{{selectedHero.name}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <!-- Modal Body -->
-      <div class="modal-body p-4">
+      <div class="modal-body p-4 animate-slide-up">
         <div class="row g-3">
 
           <!-- Image Section -->
-          <div class="col-md-4 d-flex justify-content-center align-items-start">
+          <div class="col-md-4 d-flex justify-content-center align-items-start animate-fade-in">
             <img 
               [src]="getProxiedImageUrl(selectedHero.id)" 
               alt="{{selectedHero.name}}" 
@@ -67,7 +71,7 @@
           </div>
 
           <!-- Info Section -->
-          <div class="col-md-8">
+          <div class="col-md-8 animate-fade-in">
             <div class="info-section">
               <h5 class="mb-2 text-primary border-bottom pb-1">Biography</h5>
               <p><strong>Full Name:</strong> {{selectedHero.biography?.['full-name'] || 'N/A'}}</p>
@@ -100,7 +104,7 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="modal-footer border-0 justify-content-end">
+      <div class="modal-footer border-0 justify-content-end animate-fade-in">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
       </div>
 
