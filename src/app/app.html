@@ -16,16 +16,20 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
         <li class="nav-item">
-          <a class="nav-link px-3 rounded hover-link active" routerLink="/">🏠 Home</a>
+          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+             routerLink="/home" routerLinkActive="active-link">🏠 Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-3 rounded hover-link" routerLink="/heroes">🦸 Heroes</a>
+          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+             routerLink="/heroes" routerLinkActive="active-link">🦸 Heroes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-3 rounded hover-link" routerLink="/search">🔍 Search</a>
+          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+             routerLink="/search" routerLinkActive="active-link">🔍 Search</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-3 rounded hover-link" routerLink="/about">ℹ️ About</a>
+          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+             routerLink="/about" routerLinkActive="active-link">ℹ️ About</a>
         </li>
       </ul>
     </div>
@@ -34,10 +38,6 @@
 
 <!-- ================= BODY ================= -->
 <main class="container my-5">
-  <div class="text-center mb-5">
-    <h1 class="fw-bold display-5 text-gradient">Welcome to the SuperHero Universe</h1>
-    <p class="text-muted lead">Discover, search and learn about your favorite heroes and villains</p>
-  </div>
   <router-outlet></router-outlet>
 </main>
 
