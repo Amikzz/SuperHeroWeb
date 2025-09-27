@@ -1,43 +1,24 @@
-<div class="container" style="max-width: 1200px;">
-  <h2 class="text-center mb-4">Superheroes</h2>
+<div class="container my-5" style="max-width: 1200px;">
+  <h2 class="text-center mb-4" style="font-weight: bold; color: #2c3e50;">Superheroes</h2>
 
-  <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let hero of heroes; let i = index">
-      <div class="card shadow-sm" style="height: 450px;">
-        
-        <!-- Image container -->
-        <div 
-            style="
-                width: 100%; 
-                height: 300px; 
-                overflow: hidden; 
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                background: #f0f0f0;
-            ">
-            <img 
-                [src]="getProxiedImageUrl(hero.id)" 
-                class="card-img-top" 
-                alt="{{hero.name || 'Unknown Hero'}}"
-                style="
-                    width: 100%; 
-                    height: 100%; 
-                    object-fit: cover;
-                "
-            >
+  <div class="row g-4">
+    <div class="col-md-3" *ngFor="let hero of heroes">
+      <div class="card hero-card shadow-sm">
+
+        <!-- Image -->
+        <div class="image-container">
+          <img 
+            [src]="getProxiedImageUrl(hero.id)" 
+            class="card-img-top" 
+            alt="{{hero.name || 'Unknown Hero'}}"
+          >
         </div>
 
         <!-- Card body -->
         <div class="card-body d-flex flex-column justify-content-between">
-          <h5 class="card-title" style="min-height: 2rem;">
-            {{hero.name || 'Loading...'}}
-          </h5>
-          <p class="card-text" style="min-height: 1.5rem;">
-            {{hero.biography['full-name'] || 'Unknown'}}
-          </p>
-          <a *ngIf="hero.id" [routerLink]="['/heroes', hero.id]" class="btn btn-primary btn-sm">View</a>
-          <button *ngIf="!hero.id" class="btn btn-secondary btn-sm" disabled>Loading...</button>
+          <h5 class="card-title">{{hero.name || 'Loading...'}}</h5>
+          <p class="card-text text-truncate">{{hero.biography?.['full-name'] || 'Unknown'}}</p>
+          <button class="btn btn-primary btn-sm" (click)="openHeroModal(hero)">View</button>
         </div>
 
       </div>
@@ -45,20 +26,84 @@
   </div>
 
   <!-- Pagination -->
-  <nav aria-label="Page navigation">
+  <nav aria-label="Page navigation" class="mt-4">
     <ul class="pagination justify-content-center">
       <li class="page-item" [class.disabled]="currentPage === 1">
         <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
       </li>
-
-      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
-          [class.active]="currentPage === i + 1">
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
         <button class="page-link" (click)="changePage(i + 1)">{{i + 1}}</button>
       </li>
-
       <li class="page-item" [class.disabled]="currentPage === totalPages">
         <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
       </li>
     </ul>
   </nav>
+</div>
+
+<!-- Hero Detail Modal -->
+<div class="modal fade" id="heroModal" tabindex="-1" aria-labelledby="heroModalLabel" aria-hidden="true" *ngIf="selectedHero">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-4 bg-white">
+
+      <!-- Modal Header -->
+      <div class="modal-header border-0 pb-0">
+        <h4 class="modal-title fw-bold">{{selectedHero.name}}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body p-4">
+        <div class="row g-3">
+
+          <!-- Image Section -->
+          <div class="col-md-4 d-flex justify-content-center align-items-start">
+            <img 
+              [src]="getProxiedImageUrl(selectedHero.id)" 
+              alt="{{selectedHero.name}}" 
+              class="img-fluid rounded shadow-sm" 
+              style="max-height: 400px;"
+            >
+          </div>
+
+          <!-- Info Section -->
+          <div class="col-md-8">
+            <div class="info-section">
+              <h5 class="mb-2 text-primary border-bottom pb-1">Biography</h5>
+              <p><strong>Full Name:</strong> {{selectedHero.biography?.['full-name'] || 'N/A'}}</p>
+              <p><strong>Alter Egos:</strong> {{selectedHero.biography?.['alter-egos'] || 'N/A'}}</p>
+              <p><strong>Aliases:</strong> {{selectedHero.biography?.aliases?.join(', ') || 'N/A'}}</p>
+              <p><strong>Place of Birth:</strong> {{selectedHero.biography?.['place-of-birth'] || 'N/A'}}</p>
+              <p><strong>First Appearance:</strong> {{selectedHero.biography?.['first-appearance'] || 'N/A'}}</p>
+              <p><strong>Publisher:</strong> {{selectedHero.biography?.publisher || 'N/A'}}</p>
+              <p><strong>Alignment:</strong> {{selectedHero.biography?.alignment || 'N/A'}}</p>
+
+              <h5 class="mt-3 mb-2 text-primary border-bottom pb-1">Appearance</h5>
+              <p><strong>Gender:</strong> {{selectedHero.appearance?.gender || 'N/A'}}</p>
+              <p><strong>Race:</strong> {{selectedHero.appearance?.race || 'N/A'}}</p>
+              <p><strong>Height:</strong> {{selectedHero.appearance?.height?.join(', ') || 'N/A'}}</p>
+              <p><strong>Weight:</strong> {{selectedHero.appearance?.weight?.join(', ') || 'N/A'}}</p>
+              <p><strong>Eye Color:</strong> {{selectedHero.appearance?.['eye-color'] || 'N/A'}}</p>
+              <p><strong>Hair Color:</strong> {{selectedHero.appearance?.['hair-color'] || 'N/A'}}</p>
+
+              <h5 class="mt-3 mb-2 text-primary border-bottom pb-1">Work</h5>
+              <p><strong>Occupation:</strong> {{selectedHero.work?.occupation || 'N/A'}}</p>
+              <p><strong>Base:</strong> {{selectedHero.work?.base || 'N/A'}}</p>
+
+              <h5 class="mt-3 mb-2 text-primary border-bottom pb-1">Connections</h5>
+              <p><strong>Group Affiliation:</strong> {{selectedHero.connections?.['group-affiliation'] || 'N/A'}}</p>
+              <p><strong>Relatives:</strong> {{selectedHero.connections?.relatives || 'N/A'}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer border-0 justify-content-end">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>
