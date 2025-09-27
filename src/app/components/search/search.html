@@ -1,10 +1,10 @@
-<div class="container my-5" style="max-width: 1200px; min-height: 80vh;">
-  <h2 class="text-center mb-4" style="font-weight: bold; color: #2c3e50;">
+<div class="container my-5 animate-slide-up" style="max-width: 1200px; min-height: 80vh;">
+  <h2 class="text-center mb-4 animate-fade-in" style="font-weight: bold; color: #2c3e50;">
     Search Superheroes
   </h2>
 
   <!-- Search Bar -->
-  <div class="d-flex mb-4 justify-content-center">
+  <div class="d-flex mb-4 justify-content-center animate-fade-in">
     <input
       type="text"
       [(ngModel)]="searchQuery"
@@ -12,12 +12,12 @@
       placeholder="Enter superhero name..."
       style="max-width: 400px;"
     />
-    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+    <button class="btn btn-primary animate-pop" (click)="onSearch()">Search</button>
   </div>
 
-  <!-- Intro Section (shown before searching) -->
+  <!-- Intro Section -->
   <div
-    class="text-center my-5"
+    class="text-center my-5 animate-fade-in"
     *ngIf="!heroes.length && !loading && !errorMessage"
   >
     <h3 class="fw-bold text-primary">Search Your Favourite Superhero</h3>
@@ -30,34 +30,34 @@
   </div>
 
   <!-- Loading -->
-  <div *ngIf="loading" class="text-center my-4">
+  <div *ngIf="loading" class="text-center my-4 animate-fade-in">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
   <!-- Error -->
-  <div *ngIf="errorMessage" class="alert alert-danger">
+  <div *ngIf="errorMessage" class="alert alert-danger animate-fade-in">
     {{ errorMessage }}
   </div>
 
   <!-- Results -->
   <div class="row g-4" *ngIf="heroes.length">
-    <div class="col-md-3" *ngFor="let hero of heroes">
-      <div class="card hero-card h-100 shadow-sm">
+    <div class="col-md-3" *ngFor="let hero of heroes" [@fadeInStagger]>
+      <div class="card hero-card h-100 shadow-sm animate-card">
         <img
           [src]="hero.image.url"
-          class="card-img-top"
+          class="card-img-top animate-fade-in"
           [alt]="hero.name"
           style="height: 250px; object-fit: cover;"
         />
         <div class="card-body d-flex flex-column justify-content-between">
-          <h5 class="card-title">{{ hero.name }}</h5>
-          <p class="card-text text-truncate">
+          <h5 class="card-title animate-fade-in">{{ hero.name }}</h5>
+          <p class="card-text text-truncate animate-fade-in">
             {{ hero.biography?.['full-name'] || 'Unknown' }}
           </p>
           <button
-            class="btn btn-primary btn-sm mt-auto"
+            class="btn btn-primary btn-sm mt-auto animate-pop"
             (click)="openHeroModal(hero)"
           >
             View
@@ -70,14 +70,14 @@
 
 <!-- Hero Modal -->
 <div
-  class="modal fade show"
+  class="modal fade show animate-fade-in"
   tabindex="-1"
   [ngClass]="{ 'd-block': selectedHero }"
   *ngIf="selectedHero"
 >
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
+  <div class="modal-dialog modal-lg modal-dialog-centered animate-slide-up">
+    <div class="modal-content animate-pop shadow-lg rounded-4 bg-white">
+      <div class="modal-header bg-primary text-white animate-fade-in">
         <h5 class="modal-title">{{ selectedHero.name }}</h5>
         <button
           type="button"
@@ -85,32 +85,20 @@
           (click)="closeHeroModal()"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body animate-fade-in">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 animate-fade-in">
             <img
               [src]="selectedHero.image.url"
               class="img-fluid rounded"
               [alt]="selectedHero.name"
             />
           </div>
-          <div class="col-md-8">
-            <p>
-              <strong>Full Name:</strong>
-              {{ selectedHero.biography?.['full-name'] }}
-            </p>
-            <p>
-              <strong>Publisher:</strong>
-              {{ selectedHero.biography?.publisher }}
-            </p>
-            <p>
-              <strong>First Appearance:</strong>
-              {{ selectedHero.biography?.['first-appearance'] }}
-            </p>
-            <p>
-              <strong>Alignment:</strong>
-              {{ selectedHero.biography?.alignment }}
-            </p>
+          <div class="col-md-8 animate-fade-in">
+            <p><strong>Full Name:</strong> {{ selectedHero.biography?.['full-name'] }}</p>
+            <p><strong>Publisher:</strong> {{ selectedHero.biography?.publisher }}</p>
+            <p><strong>First Appearance:</strong> {{ selectedHero.biography?.['first-appearance'] }}</p>
+            <p><strong>Alignment:</strong> {{ selectedHero.biography?.alignment }}</p>
           </div>
         </div>
       </div>
