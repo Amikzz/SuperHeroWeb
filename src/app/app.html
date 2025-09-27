@@ -1,0 +1,56 @@
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center" href="#">
+      <span class="fs-3 me-2">🦸</span> <span>Super Heroes</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded hover-link active" routerLink="/">🏠 Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded hover-link" routerLink="/heroes">🦸 Heroes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded hover-link" routerLink="/search">🔍 Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded hover-link" routerLink="/about">ℹ️ About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= BODY ================= -->
+<main class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-5 text-gradient">Welcome to the SuperHero Universe</h1>
+    <p class="text-muted lead">Discover, search and learn about your favorite heroes and villains</p>
+  </div>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-light text-center py-4 mt-auto shadow-sm">
+  <div class="container">
+    <small class="d-block mb-2">
+      Built with ❤️ by <span class="fw-semibold">Amika</span> | Powered by <span class="fw-semibold">SuperHero API</span>
+    </small>
+    <div>
+      <a href="#" class="text-light mx-2"><i class="bi bi-github"></i></a>
+      <a href="#" class="text-light mx-2"><i class="bi bi-twitter"></i></a>
+      <a href="#" class="text-light mx-2"><i class="bi bi-instagram"></i></a>
+    </div>
+  </div>
+</footer>

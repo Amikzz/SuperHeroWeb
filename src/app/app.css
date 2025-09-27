@@ -1,0 +1,32 @@
+/* Gradient Navbar */
+.bg-gradient {
+  background: linear-gradient(135deg, #0a0f2c, #1e3c72, #2a5298);
+}
+
+/* Navbar hover effect */
+.hover-link {
+  transition: all 0.3s ease;
+}
+.hover-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Footer social icons hover */
+footer a:hover {
+  color: #0d6efd;
+}
+
+.navbar .nav-link {
+  color: black !important;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-brand {
+  color: black !important;
+  font-weight: 700; 
+  font-size: 1.5rem;
+  letter-spacing: 1px; 
+  transition: color 0.3s ease;
+}
