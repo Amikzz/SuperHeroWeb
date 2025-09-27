@@ -23,4 +23,5 @@ export class SuperheroService {
     const requests = ids.map(id => this.getHeroById(id));
     return forkJoin(requests);
   }
+
 }

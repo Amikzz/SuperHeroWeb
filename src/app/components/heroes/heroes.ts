@@ -29,10 +29,19 @@ export class Heroes implements OnInit {
     const startId = (this.currentPage - 1) * this.heroesPerPage + 1;
     const ids = Array.from({ length: this.heroesPerPage }, (_, i) => startId + i);
 
+    console.log("Fetching heroes with IDs:", ids);
+
     this.superheroService.getHeroes(ids).subscribe(
-      heroes => this.heroes = heroes,
-      err => console.error(err)
+      heroes => {
+        console.log("Full API response:", heroes); // ← Logs the complete API response
+        this.heroes = heroes;
+      },
+      err => console.error("Error loading heroes:", err)
     );
+  }
+
+  getProxiedImageUrl(id: string): string {
+    return `assets/images/${id}.jpg`;
   }
 
   changePage(page: number) {
