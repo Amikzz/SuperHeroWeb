@@ -12,4 +12,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class App {
   protected readonly title = signal('SuperHeroWeb');
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const loader = document.getElementById('loading-screen');
+      if (loader) {
+        loader.classList.add('hidden');
+      }
+    }, 1000); // 1-second delay for demo, adjust to your needs
+  }
 }
