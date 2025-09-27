@@ -49,3 +49,47 @@ footer a:hover {
   color: #000 !important;
   font-weight: 600;
 }
+
+/* Glassmorphism Navbar */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.15); /* transparent white */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1050; /* stay above other elements */
+}
+
+/* Navbar links */
+.navbar .nav-link {
+  color: black !important;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Brand */
+.navbar-brand {
+  color: black !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+/* Style for navbar buttons */
+.custom-nav-link {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.custom-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Active link styling */
+.active-link {
+  background-color: #ffd43b !important;
+  color: #000 !important;
+  font-weight: 600;
+}

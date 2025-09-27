@@ -1,39 +1,87 @@
 <!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm">
+<nav class="navbar navbar-expand-lg fixed-top glass-navbar shadow-sm">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center" routerLink="/">
-      <img src="favicon.png" width="50" height="auto"> <span> &nbsp;Super Heroes</span>
+    <a
+      class="navbar-brand fw-bold d-flex align-items-center text-decoration-none"
+      routerLink="/"
+      style="font-size: 1.4rem; letter-spacing: 2px;"
+    >
+      <!-- Logo -->
+      <img
+        src="favicon.png"
+        alt="Logo"
+        width="45"
+        height="45"
+        class="rounded-circle shadow-sm me-2"
+        style="object-fit: cover;"
+      />
+
+      <!-- Name with gradient -->
+      <span
+        class="fw-bold"
+        style="
+          background: linear-gradient(90deg, #0d6efd, #6f42c1);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        "
+      >
+        Super Hero Universe
+      </span>
     </a>
 
     <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
-       <li class="nav-item">
-          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+        <li class="nav-item">
+          <a
+            class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
             routerLink="/home"
             routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }">
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             🏠 Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
-             routerLink="/heroes" routerLinkActive="active-link">🦸 Heroes</a>
+          <a
+            class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+            routerLink="/heroes"
+            routerLinkActive="active-link"
+          >
+            🦸 Heroes
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
-             routerLink="/search" routerLinkActive="active-link">🔍 Search</a>
+          <a
+            class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+            routerLink="/search"
+            routerLinkActive="active-link"
+          >
+            🔍 Search
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
-             routerLink="/about" routerLinkActive="active-link">ℹ️ About</a>
+          <a
+            class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
+            routerLink="/about"
+            routerLinkActive="active-link"
+          >
+            ℹ️ About
+          </a>
         </li>
       </ul>
     </div>
@@ -41,7 +89,8 @@
 </nav>
 
 <!-- ================= BODY ================= -->
-<main class="container my-5">
+<main class="container my-5" style="padding-top: 90px;">
+  <!-- extra padding so content isn’t hidden behind fixed navbar -->
   <router-outlet></router-outlet>
 </main>
 
