@@ -24,4 +24,8 @@ export class SuperheroService {
     return forkJoin(requests);
   }
 
+  searchHeroes(name: string): Observable<any> {
+  const url = `${this.corsProxy}${encodeURIComponent(`${this.baseUrl}/search/${name}`)}`;
+  return this.http.get(url);}
+
 }
