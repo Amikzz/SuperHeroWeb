@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center" href="#">
+    <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center" routerLink="/">
       <img src="favicon.png" width="50" height="auto"> <span> &nbsp;Super Heroes</span>
     </a>
 
@@ -15,9 +15,13 @@
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
-        <li class="nav-item">
+       <li class="nav-item">
           <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
-             routerLink="/home" routerLinkActive="active-link">🏠 Home</a>
+            routerLink="/home"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            🏠 Home
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-outline-light btn-sm px-3 rounded custom-nav-link"
