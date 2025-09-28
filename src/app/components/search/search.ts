@@ -29,6 +29,8 @@ export class Search {
 
     this.heroService.searchHeroes(this.searchQuery).subscribe({
       next: (data) => {
+        console.log('Full API Response:', data); // 👈 Logs the whole response
+
         if (data.response === 'success') {
           this.heroes = data.results;
         } else {
@@ -36,7 +38,8 @@ export class Search {
         }
         this.loading = false;
       },
-      error: () => {
+      error: (err) => {
+        console.error('Error Response:', err); // 👈 Logs error details
         this.errorMessage = 'Failed to fetch results. Please try again.';
         this.loading = false;
       }
