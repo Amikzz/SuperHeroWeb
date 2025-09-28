@@ -46,6 +46,10 @@ export class Search {
     });
   }
 
+  getProxiedImageUrl(id: string): string {
+    return `assets/images/${id}.jpg`;
+  }
+
   openHeroModal(hero: any): void {
     this.selectedHero = hero;
   }
